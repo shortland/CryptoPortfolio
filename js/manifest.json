@@ -1,0 +1,6 @@
+{
+  "short_name": "Portfolio",
+  "name": "My Crypto Portfolio",
+  "theme_color": "rgba(10, 86, 208, 1.0)",
+  "start_url": "index.html?launcher=true"
+}
