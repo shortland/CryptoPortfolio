@@ -15,9 +15,9 @@
 }
 
 * {
-	z-index: 1;
+	z-index: 1; /* so that the adder is hidden (has z-index of 0 itself) */
 	font-family: 'Lato';
-	white-space:nowrap;
+	white-space: nowrap;
 }
 
 body {
@@ -55,7 +55,7 @@ body {
 	overflow-y: scroll !important;
 }
 
-.sym_pic {
+.sym_pic, img.colorify {
 	width: 70px;
 	height: 70px;
 }
@@ -63,6 +63,7 @@ body {
 .tblof {
 	width: 100%;
 	min-width: 500px;
+	height: 100px !important; /* wow this worked? */
 }
 
 .wide150 {
@@ -113,4 +114,8 @@ body {
 #save_adder:hover, #save_adder:active {
 	background-color: rgba(0, 0, 0, 1.0);
 	color: rgba(255, 255, 255, 1.0);
+}
+
+.hideme {
+	display: none;
 }

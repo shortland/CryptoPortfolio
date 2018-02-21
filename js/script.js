@@ -5,12 +5,24 @@
 * Last: MM/DD/YYYY
 */
 
+// holds the fetched user data.
+// global variable cus we fetch it in one function, but use it in others without passing it as a parameter.
+var obj; 
+var max_count = 0;
+
 $(document).ready(function() {
 	$.get("get_data.pl?method=get_data&user=shortland", function(data) {
 		var DECIMALS_TO_ROUND = 4;
 		var LONGER_DECIMALS_TO_ROUND = 12;
 
-		var obj = JSON.parse(data);
+		obj = JSON.parse(data);
+
+		// sort the view based on the usd_price per 1 coin
+		// allow user to customize this later on?
+		obj['wallets'].sort(function(a, b) {
+			return b.usd_price - a.usd_price; 
+		});
+
 		var total_value = obj['usd_value'];
 		var total_value_btc = obj['btc_value'];
 
@@ -65,12 +77,12 @@ $(document).ready(function() {
 
 		for (var i = 0; i < obj['wallets'].length; i++) {
 			$("#content").append(
-				"<div class='object'>" +
-					"<table class='tblof' style='height:100%;overflow:scroll;'>" +
+				'<div class=\'object\' id="parent_of_main_' + i + '" style="background-color:rgba(255, 255, 255, 0.0)">' +
+					"<table class='main_parent_" + i + " tblof' style='height:100%;overflow:scroll;'>" +
 						"<tr>" +
 							"<td rowspan='4' align='center' style='width:100px;height:100%;vertical-align:middle;'>" +
-								"<div style='display:inline-block;horizontal-align:center;width:100px !important;'>" +
-									"<img src='color/" + obj['wallets'][i]['symbol'].toLowerCase() + ".png' class='sym_pic' />" +
+								"<div id='remove_bg_plz_" + i + "' colorify_main_color_" + i + " style='display:inline-block;horizontal-align:center;width:100px !important;'>" +
+									"<img colorify_" + i + " src='color/" + obj['wallets'][i]['symbol'].toLowerCase() + ".png' class='sym_pic' />" +
 								"</div>" +
 							"</td>" + 
 							"<td><div class='wide150'>Name: " + obj['wallets'][i]['name'] + "</div></td>" +
@@ -98,11 +110,47 @@ $(document).ready(function() {
 		}
 
 		$(".object").css({"width" : $(window).width()});
-		
+
 		$("#save_adder").click(function() {
 			$.post("get_data.pl", {method: "post_data", user: "shortland", symbol: $("#symbol_value").val(), amt: $("#amt_value").val(), location: $("#location_value").val()}, function(data) {
 				alert(data);
 			});
 		});
+	}).done(function() {
+		colorify_them();
 	});
+
+	function colorify_them() {
+		if (max_count == 10) {
+			alert("reached max");
+			return;
+		}
+		max_count++;
+		for (var i = 0; i < obj['wallets'].length; i++) {
+			colorify({
+				id: i,
+				container: "colorify_main_color_" + i,
+				accuracy: 1,
+				attr: 'colorify_' + i,
+				give: {
+					property: 'background-color',
+					target: '.main_parent_' + i
+				}
+			});
+		}
+		if ($(".main_parent_0").css('backgroundColor') == "rgba(0, 0, 0, 0)") {
+			// for some reason this works with 0 delay.
+			// outright calling the function doesn't work.
+			setTimeout(colorify_them, 0);
+		}
+		else {
+			setTimeout(remove_unwanted_bg, 0);
+		}
+	}
+
+	function remove_unwanted_bg() {
+		for (var i = 0; i < obj['wallets'].length; i++) {
+			$('#remove_bg_plz_' + i).children().css({"background-color" : "rgba(255, 255, 255, 0.0)"});
+		}
+	}
 });
