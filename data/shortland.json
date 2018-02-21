@@ -1,1 +1,1 @@
-{"wallets":[{"location": "PC Wallet", "symbol" : "XRP", "amt" : "131.0"},{"location": "Bitstamp", "symbol" : "XRP", "amt" : "84.05155928"},{"location": "Bittrex", "symbol" : "DOGE", "amt" : "1804.30147059"}]}
+{"wallets":[{"amt":"650.0","symbol":"XRP","location":"PC Wallet"},{"location":"Bitstamp","amt":"0.02301151","symbol":"BTC"},{"symbol":"XRP","amt":"181.113954","location":"Bitstamp"},{"location":"Bittrex","symbol":"DOGE","amt":"17043.0147059"},{"location":"Bittrex","symbol":"XLM","amt":"240.561142191"},{"amt":"0.21033174","symbol":"ETH","location":"Bitstamp"}]}

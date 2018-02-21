@@ -1,6 +1,1 @@
-{
-  "short_name": "Portfolio",
-  "name": "My Crypto Portfolio",
-  "theme_color": "rgba(10, 86, 208, 1.0)",
-  "start_url": "index.html?launcher=true"
-}
+{"manifest_version": 1,"name": "My Crypto Portfolio","version": "version 1.0","short_name": "Portfolio","theme_color": "rgba(10, 86, 208, 1.0)","start_url": "index.html?launcher=true","display": "standalone"}

@@ -14,7 +14,19 @@
     src: local('Lato Regular'), local('Lato-Regular'), url(lato.tff) format('truetype');
 }
 
+* {
+	z-index: 1;
+	font-family: 'Lato';
+	white-space:nowrap;
+}
+
+body {
+	overflow: hidden;
+	width: 100%;
+}
+
 #header {
+	z-index: 2;
 	position: fixed;
 	top: 0px;
 	left: 0px;
@@ -27,11 +39,79 @@
 	color: rgba(255, 255, 255, 1.0);
 }
 
+#content {
+	position: absolute;
+	top: 32px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+}
+
 .object {
 	height: 100px;
 	border-bottom: 1px solid black;
+	width: 500px;
+	overflow: scroll;
+	overflow-x: scroll !important;
+	overflow-y: scroll !important;
+}
+
+.sym_pic {
+	width: 70px;
+	height: 70px;
+}
+
+.tblof {
 	width: 100%;
-	margin-left: 20px;
-	margin-right: 20px;
-	
+	min-width: 500px;
+}
+
+.wide150 {
+	width: 150px;
+}
+
+#add_content {
+	z-index: 2;
+	position: fixed;
+	top: 40px;
+	right: 10px;
+	background-color: rgba(10, 86, 208, 1.0);
+	color: rgba(255, 255, 255, 1.0);
+	width: 40px;
+	height: 40px;
+	font-size: 30px;
+	text-align: center;
+	border-radius: 60px;
+	transition: all 320ms;
+	cursor: pointer;
+	border: 1px solid rgba(10, 86, 208, 1.0);
+	box-sizing: border-box;
+}
+
+#adder {
+	z-index: 0;
+	box-sizing: border-box;
+	width: 100%;
+	border-bottom: 1px solid black;
+}
+
+.textbox {
+	border: 1px solid black;
+	height: 20px;
+	color: rgba(0, 0, 0, 1.0);
+}
+
+#save_adder {
+	background-color: rgba(0, 0, 0, 0.1);
+	border: 1px solid black;
+	height: 25px;
+	width: 120px;
+	border-radius: 0px;
+	cursor: pointer;
+	transition: all 320ms;
+}
+
+#save_adder:hover, #save_adder:active {
+	background-color: rgba(0, 0, 0, 1.0);
+	color: rgba(255, 255, 255, 1.0);
 }
