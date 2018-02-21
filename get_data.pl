@@ -22,8 +22,8 @@ sub reprocess_add_prices {
 	my ($data) = @_;
 	$data = decode_json($data);
 	my $cmc_data = decode_json(get_cmc_data());
-	my $wallets_data = $data->{wallets};
-	foreach my $hash (@{$wallets_data}) {
+	my @wallets_data = @{$data->{wallets}};
+	foreach my $hash (@wallets_data) {
 		my $cmc_usd_price;
 		my $cmc_btc_price;
 		my $cmc_name;
